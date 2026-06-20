@@ -7,15 +7,15 @@ st.set_page_config(page_title="App Tính Thuế TNCN Việt Nam 2026", page_icon
 st.image("logo.jpg.png")
 
 # --- THÔNG TIN THÀNH VIÊN VÀ ĐỀ TÀI ---
-st.markdown("### 📝 **NGUYỄN NGỌC MINH THƯ**")
+st.markdown("### **NGUYỄN NGỌC MINH THƯ**")
 
-st.title("💰 Ứng Dụng Tính Thuế Thu Nhập Cá Nhân")
+st.title(" Ứng Dụng Tính Thuế Thu Nhập Cá Nhân")
 st.write("Cập nhật đầy đủ Lương, Thưởng, Tăng ca, Phụ cấp theo luật thuế mới nhất năm 2026")
 
 st.markdown("---")
 
 # --- PHẦN NHẬP DỮ LIỆU ĐẦU VÀO ---
-st.subheader("📋 Nhập thông tin thu nhập tháng này của bạn")
+st.subheader(" Nhập thông tin thu nhập tháng này của bạn")
 
 gross_salary = st.number_input(
     "1. Lương đóng BHXH (VND):", 
@@ -107,11 +107,11 @@ def tinh_thue_tncn(gross, bonus, overtime, lunch, other, deps):
     }
 
 # --- PHẦN NÚT BẤM KÍCH HOẠT VÀ HIỂN THỊ KẾT QUẢ ---
-if st.button("🧮 Tính Thuế & Nhận Kết Quả", type="primary"):
+if st.button(" Tính Thuế & Nhận Kết Quả", type="primary"):
     res = tinh_thue_tncn(gross_salary, gross_bonus_pay, overtime_pay, lunch_allowance, other_allowance, dependents)
     
     st.markdown("---")
-    st.subheader("🎯 Kết Quả Tính Toán Tóm Tắt")
+    st.subheader(" Kết Quả Tính Toán Tóm Tắt")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -122,7 +122,7 @@ if st.button("🧮 Tính Thuế & Nhận Kết Quả", type="primary"):
         st.metric(label="THỰC NHẬN VỀ TAY (NET)", value=f"{res['net_salary']:,.0f} VND")
 
     st.markdown("---")
-    st.subheader("📜 Giải Trình Chi Tiết Quy Trình Khấu Trừ (Năm 2026)")
+    st.subheader(" Giải Trình Chi Tiết Quy Trình Khấu Trừ (Năm 2026)")
     
     st.markdown(f"""
     * **Tổng thu nhập phát sinh trong tháng:** `{res['total_income']:,.0f} VND`
@@ -140,7 +140,7 @@ if st.button("🧮 Tính Thuế & Nhận Kết Quả", type="primary"):
     """)
     
     if res['tax'] > 0:
-        st.write("📊 **Chi tiết phân tách số tiền nộp theo biểu thuế 5 bậc mới (2026):**")
+        st.write(" **Chi tiết phân tách số tiền nộp theo biểu thuế 5 bậc mới (2026):**")
         st.table(res['tax_breakdown'])
     else:
         st.success("Tuyệt vời! Sau khi trừ các khoản phụ cấp miễn thuế và giảm trừ gia cảnh, thu nhập tính thuế của bạn bằng 0 nên không cần phải nộp thuế TNCN.")
